@@ -1,0 +1,33 @@
+services:
+  webserver:
+    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/aws-community-nginx:latest
+    build:
+      context: ../aws-community/
+      dockerfile: ../aws-community/Dockerfile-webserver-ecs
+    ports:
+      - "80:80"
+    depends_on:
+      - php
+    networks:
+      - app-network
+    restart: always
+
+  php:
+    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/aws-community-php:latest
+    build:
+      context: ../aws-community/
+      dockerfile: ../aws-community/Dockerfile-php
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_DATABASE=myapp
+      - DB_USERNAME=myuser
+      - DB_PASSWORD=mypassword
+      - TZ=Asia/Bangkok
+    networks:
+      - app-network
+    restart: always
+
+networks:
+  app-network:
+    driver: bridge
