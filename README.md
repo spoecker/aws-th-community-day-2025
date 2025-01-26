@@ -6,6 +6,10 @@ This repository contains the demo application used in the session "Starting from
 
 A simple message board application that demonstrates the evolution of a containerized application from local development to AWS deployment, incorporating AWS Well-Architected best practices.
 
+### Link to presentation
+
+Presentation from the Community Day: <https://www.slideshare.net/slideshow/starting-from-a-containerised-poc-and-applying-best-practices-well-architected-framework/275154397>
+
 ### Features
 
 - Message board with real-time updates
